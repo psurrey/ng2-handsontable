@@ -143,7 +143,8 @@ export class HotTable implements OnInit, OnDestroy, OnChanges {
 
     eventNames.forEach(eventName => {
       htOptions[eventName] = data => {
-        this[eventName].emit(data);
+        console.log('eventName', eventName);
+        this.ngZone.run(() => { this[eventName].emit(data); });
       };
     });
 
